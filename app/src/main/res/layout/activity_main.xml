@@ -50,17 +50,17 @@
                         android:text="Histórico"
                         android:textSize="22sp"/>
 
-                    <Button
-                        android:id="@+id/btNonSense"
-                        android:layout_width="190dp"
-                        android:layout_height="70dp"
-                        android:onClick="openPermission"
-                        android:layout_marginTop="540dp"
-                        android:layout_marginLeft="115dp"
-                        android:backgroundTint="@color/white"
-                        android:textColor="@color/skyblue_light"
-                        android:text="Permission"
-                        android:textSize="22sp"/>
+                <Button
+                    android:id="@+id/btNonSense"
+                    android:layout_width="190dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="115dp"
+                    android:layout_marginTop="550dp"
+                    android:backgroundTint="@color/white"
+                    android:onClick="openPermission"
+                    android:text="Permissão"
+                    android:textColor="@color/skyblue_light"
+                    android:textSize="22sp" />
 
             </RelativeLayout>
 

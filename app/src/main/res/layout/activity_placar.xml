@@ -1,54 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PlacarActivity">
 
-    <Button
-        android:id="@+id/btSalvarPlacar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="saveGame"
-        android:text="Salvar Placar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            app:srcCompat="@drawable/table_tennis_background_portrait3"
+            />
 
-    <TextView
-        android:id="@+id/tvPlacar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="alteraPlacar"
-        android:text="0 X 0"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btSalvarPlacar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvNomePartida2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Partida"
-        android:textSize="34sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/tvPlacar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/fully_gradient_background"
+            >
+                <Button
+                    android:id="@+id/btSalvarPlacar"
+                    android:layout_width="240dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="90dp"
+                    android:layout_marginTop="480dp"
+                    android:textSize="22sp"
+                    android:onClick="saveGame"
+                    android:text="Salvar Placar"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/skyblue_light" />
 
-    <Button
-        android:id="@+id/btVerJogos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="lerUltimosJogos"
-        android:text="Resultado Anterior"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btSalvarPlacar" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tvPlacar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="112dp"
+                    android:layout_marginTop="150dp"
+                    android:onClick="alteraPlacar"
+                    android:text="0 x 0"
+                    android:textColor="@color/white"
+                    android:textSize="90sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvNomePartida2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="120dp"
+                    android:layout_marginTop="70dp"
+                    android:text=" Partida de \nPing Pong"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="34sp"
+                    android:textStyle="bold|italic" />
+
+                <Button
+                    android:id="@+id/btVerJogos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:onClick="lerUltimosJogos"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="580dp"
+                    android:textSize="22sp"
+                    android:text="Resultado Anterior"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/skyblue_light" />
+
+        </RelativeLayout>
+</FrameLayout>

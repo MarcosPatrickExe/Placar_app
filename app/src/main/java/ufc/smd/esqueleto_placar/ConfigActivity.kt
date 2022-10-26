@@ -53,18 +53,18 @@ class ConfigActivity : AppCompatActivity() {
                         val tv= findViewById<EditText>(R.id.editTextGameName)
                         tv.setText(placar.nome_partida)
 
-                        val sw= findViewById<Switch>(R.id.swTimer)
-                        sw.isChecked=placar.has_timer
+                     //   val sw= findViewById<Switch>(R.id.swTimer)
+                     //   sw.isChecked=placar.has_timer
             }
 
 
 
             fun updatePlacarConfig(){
                         val tv= findViewById<EditText>(R.id.editTextGameName)
-                        val sw= findViewById<Switch>(R.id.swTimer)
+                //        val sw= findViewById<Switch>(R.id.swTimer)
 
                         this.placar.nome_partida = tv.text.toString()
-                        this.placar.has_timer = sw.isChecked
+               //         this.placar.has_timer = sw.isChecked
             }
 
 
