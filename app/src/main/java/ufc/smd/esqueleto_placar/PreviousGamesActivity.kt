@@ -67,19 +67,19 @@ class PreviousGamesActivity : AppCompatActivity() {
                                 Log.v("PDM", "numMatchs:"+ numMatches)
 
                                 for (i in 1.. numMatches){
-                                        aux= sp.getString("match"+i,"vazio")!!
+                                            aux = sp.getString("match"+i,"vazio")!!
 
-                                        if(!aux.equals("vazio")){
+                                            if( !aux.equals("vazio")){
 
-                                            var bis = ByteArrayInputStream(aux.toByteArray(Charsets.ISO_8859_1))
+                                                var bis = ByteArrayInputStream(aux.toByteArray(Charsets.ISO_8859_1))
 
-                                            var obi = ObjectInputStream(bis)
+                                                var obi = ObjectInputStream(bis)
 
-                                            var placar: Placar = obi.readObject() as Placar
-                                            data.add(placar)
-                                            //Log.v("PDM", "match"+i+" :"+aux)
-                                            Log.v("PDM", "Placar: "+placar.nome_partida +" Res:"+placar.resultadoLongo)
-                                        }
+                                                var placar: Placar = obi.readObject() as Placar
+                                                data.add(placar)
+                                                //Log.v("PDM", "match"+i+" :"+aux)
+                                                Log.v("PDM", "Placar: "+placar.nome_partida +" Res:"+placar.resultadoLongo)
+                                            }
                                 }
                         }
 

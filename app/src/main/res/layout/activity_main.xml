@@ -2,66 +2,79 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
+    android:padding="0dp"
+    android:backgroundTint="@color/black"
     tools:context=".MainActivity">
 
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                app:srcCompat="@drawable/table_tennis_background_portrait3"
-            />
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/table_tennis_background_portrait3"
+    /><!-- app:srcCompact="@drawable/nome_da_imagem" -->
 
 
-            <RelativeLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/gradient_background"
+        android:orientation="vertical">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/gradient_background"
-            >
-
-                <Button
-                    android:id="@+id/btIniciar"
-                    android:layout_width="200dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="100dp"
-                    android:layout_marginTop="270dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="120dp"
-                    android:layout_marginBottom="20dp"
-                    android:onClick="openConfig"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/skyblue_light"
-                    android:text="Jogar"
-                    android:textSize="25sp"/>
+                android:gravity="center"
+                android:paddingTop="130dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true">
 
                     <Button
-                        android:id="@+id/btPreviousGame"
-                        android:layout_width="170dp"
+                        android:id="@+id/btnJogar"
+                        android:layout_width="wrap_content"
                         android:layout_height="70dp"
-                        android:layout_marginTop="420dp"
-                        android:layout_marginStart="120dp"
-                        android:onClick="openPreviusGames"
                         android:backgroundTint="@color/white"
+                        android:onClick="openConfig"
+                        android:text="Jogar"
+                        android:layout_marginTop="50dp"
                         android:textColor="@color/skyblue_light"
+                        android:textSize="25sp" />
+
+                    <Button
+                        android:id="@+id/btnHistorico"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70dp"
+                        android:backgroundTint="@color/white"
+                        android:onClick="openPreviusGames"
                         android:text="Histórico"
-                        android:textSize="22sp"/>
+                        android:layout_marginTop="50dp"
+                        android:textColor="@color/skyblue_light"
+                        android:textSize="22sp" />
 
-                <Button
-                    android:id="@+id/btNonSense"
-                    android:layout_width="190dp"
-                    android:layout_height="70dp"
-                    android:layout_marginStart="115dp"
-                    android:layout_marginTop="550dp"
-                    android:backgroundTint="@color/white"
-                    android:onClick="openPermission"
-                    android:text="Permissão"
-                    android:textColor="@color/skyblue_light"
-                    android:textSize="22sp" />
+                    <Button
+                        android:id="@+id/btnPermissao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="66dp"
+                        android:backgroundTint="@color/white"
+                        android:onClick="openPermission"
+                        android:text="Permissão"
+                        android:layout_marginTop="50dp"
+                        android:textColor="@color/skyblue_light"
+                        android:textSize="22sp" />
 
-            </RelativeLayout>
+            </LinearLayout>
+
+    </RelativeLayout>
 
 </FrameLayout>

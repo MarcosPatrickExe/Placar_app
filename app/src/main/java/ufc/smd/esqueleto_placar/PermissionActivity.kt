@@ -1,5 +1,4 @@
 package ufc.smd.esqueleto_placar
-
 import android.Manifest
 import android.content.Context
 import android.content.Intent
@@ -15,40 +14,42 @@ import androidx.core.content.ContextCompat
 import data.UIEducacionalPermissao
 import androidx.activity.result.ActivityResultLauncher as ActivityResultLauncher1
 
+
+
+
 class PermissionActivity : AppCompatActivity() {
 
     lateinit var requestPermissionLauncher:androidx.activity.result.ActivityResultLauncher<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_permission)
+                super.onCreate(savedInstanceState)
+                setContentView(R.layout.activity_permission)
 
-        requestPermissionLauncher= registerForActivityResult(
-                ActivityResultContracts.RequestPermission()
-            ) { isGranted: Boolean ->
-                if (isGranted) {
-                    ligarFunc("tel:+5588999999999")
-                } else {
-                    Log.v("PDM", " Seu maldito, preciso dessa permissão")
+                requestPermissionLauncher= registerForActivityResult(
+                        ActivityResultContracts.RequestPermission()
+                ) { isGranted: Boolean ->
+                        if (isGranted) {
+                                    ligarFunc("tel:+5588999999999")
+                        } else {
+                                    Log.v("PDM", " Seu maldito, preciso dessa permissão")
+                        }
                 }
-            }
     }
+
+
+
     fun ligar(v: View) {
 
+                if( ContextCompat.checkSelfPermission( this.applicationContext, Manifest.permission.CALL_PHONE
+                          ) == PackageManager.PERMISSION_GRANTED) {
+                                //Tenho a permissão
 
-        if(ContextCompat.checkSelfPermission(
-                this.applicationContext,
-                Manifest.permission.CALL_PHONE
-            ) == PackageManager.PERMISSION_GRANTED) {
-                //Tenho a permissão
-
-                ligarFunc("tel:+5585999999999")
-            }else{
-                //Não tenho a permissão
-                Log.v("PDM", "Não tem permissão")
-            requestPermissionLauncher.launch(Manifest.permission.CALL_PHONE)
-
-            }
+                                ligarFunc("tel:+5585999999999")
+                    }else{
+                                //Não tenho a permissão
+                                Log.v("PDM", "Não tem permissão")
+                                requestPermissionLauncher.launch(Manifest.permission.CALL_PHONE)
+                    }
 
         }
 

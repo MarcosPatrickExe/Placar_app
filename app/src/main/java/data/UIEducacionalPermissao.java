@@ -23,10 +23,10 @@ public  class UIEducacionalPermissao extends DialogFragment {
             NoticeDialogListener listener;
 
 
-            public UIEducacionalPermissao(String mensagem, String titulo, int codigo){
-                    this.mensagem=mensagem;
-                    this.titulo=titulo;
-                    this.codigo=codigo;
+            public UIEducacionalPermissao( String mensagem, String titulo, int codigo){
+                    this.mensagem = mensagem;
+                    this.titulo = titulo;
+                    this.codigo = codigo;
             }
 
 
