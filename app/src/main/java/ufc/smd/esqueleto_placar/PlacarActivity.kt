@@ -30,7 +30,7 @@ class PlacarActivity : AppCompatActivity() {
 
             override fun onCreate(savedInstanceState: Bundle?) {
                     super.onCreate(savedInstanceState)
-                    setContentView(R.layout.activity_placar)
+                    super.setContentView(R.layout.activity_placar)
 
                     placar = super.getIntent().getExtras()?.getSerializable("placar") as Placar
 

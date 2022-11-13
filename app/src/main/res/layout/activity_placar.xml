@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,30 +13,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             android:src="@drawable/background_ping_pong"
-         />
-<!--  app:srcCompat="@drawable/top_gradient" -->
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--  app:srcCompat="@drawable/top_gradient" -->
 
 
         <!--   BACKGROUND GRADIENT  -->
+
+
         <ImageView
             android:id="@+id/gradientt"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@drawable/top_gradient"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-        />
-
-
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/nameFirstPlayer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="88dp"
             android:background="@color/red_background"
             android:paddingHorizontal="20dp"
             android:paddingVertical="5dp"
@@ -45,8 +42,8 @@
             android:textColor="@color/white"
             android:textSize="28sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.129"
+            app:layout_constraintEnd_toStartOf="@+id/nameSecondPlayer"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nomePartida" />
 
@@ -54,7 +51,7 @@
             android:id="@+id/nameSecondPlayer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginStart="40dp"
             android:background="@color/blue_background"
             android:paddingHorizontal="20dp"
             android:paddingVertical="5dp"
@@ -62,10 +59,11 @@
             android:textColor="@color/white"
             android:textSize="28sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/nameFirstPlayer"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.778"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/nameFirstPlayer"
-            app:layout_constraintTop_toBottomOf="@+id/nomePartida" />
+            app:layout_constraintTop_toTopOf="@+id/nameFirstPlayer" />
 
         <Button
             android:id="@+id/btnSalvarPlacar"
@@ -85,35 +83,36 @@
         <TextView
             android:id="@+id/firstPlayerScore"
             style="@style/scoreTextStyle"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="144dp"
+            android:layout_marginTop="36dp"
             android:onClick="alteraPontosJogadorUm"
             android:text="1"
+            app:layout_constraintEnd_toStartOf="@+id/secondPlayerScore"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomePartida" />
+            app:layout_constraintTop_toBottomOf="@+id/nameFirstPlayer" />
 
         <TextView
             android:id="@+id/secondPlayerScore"
             style="@style/scoreTextStyle"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="144dp"
+            android:layout_marginStart="140dp"
             android:onClick="alteraPontosJogadorDois"
             android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/firstPlayerScore"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/firstPlayerScore"
-            app:layout_constraintTop_toBottomOf="@+id/nomePartida" />
+            app:layout_constraintTop_toTopOf="@+id/firstPlayerScore" />
 
         <TextView
             android:id="@+id/nomePartida"
-            android:layout_width="278dp"
-            android:layout_height="63dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text=" Partida número 1"
+            android:maxLines="2"
+            android:text="Partida número 1"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="28sp"
-            android:maxLines="2"
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -140,29 +139,28 @@
             android:id="@+id/setPlayerUm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="4dp"
             android:text="SET 0"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/setPlayerDois"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/firstPlayerScore" />
+            tools:layout_editor_absoluteY="364dp" />
 
         <TextView
             android:id="@+id/setPlayerDois"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="172dp"
-            android:layout_marginTop="4dp"
             android:text="SET 0"
+            android:layout_marginStart="180dp"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="@+id/backgroundImage"
-            app:layout_constraintHorizontal_bias="0.087"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/setPlayerUm"
-            app:layout_constraintTop_toBottomOf="@+id/secondPlayerScore" />
+            tools:layout_editor_absoluteY="364dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
