@@ -18,66 +18,65 @@ class ConfigActivity : AppCompatActivity() {
             var placar: Placar = Placar("Jogo sem Config","Marcos", "Patrick",10, 4, 1, 2)
 
 
-            override fun onCreate(savedInstanceState: Bundle?) {
+            override fun onCreate (savedInstanceState: Bundle?) {
                         super.onCreate(savedInstanceState)
                         setContentView(R.layout.activity_config)
                        // placar= getIntent().getExtras()?.getSerializable("placar") as Placar
                         //Log.v("PDM22",placar.nome_partida)
                         //Log.v("PDM22",placar.has_timer.toString())
 
-                        openConfig()
-                        initInterface()
+                        this.loadConfig()
             }
 
 
-            fun saveConfig(){
-                        val sharedFilename = "configPlacar"
-                        val sp:SharedPreferences = getSharedPreferences(sharedFilename,Context.MODE_PRIVATE)
-                        var edShared = sp.edit()
+            private fun saveConfig () {
+                        val sp :SharedPreferences = super.getSharedPreferences("configPlacar", Context.MODE_PRIVATE)
+                        val edShared = sp.edit()
 
-
-                        edShared.putString("matchname",placar.nome_partida)
-                  //      edShared.putBoolean("has_timer",placar.has_timer)
+                        edShared.putString("matchName", placar.nomePartida)
+                        edShared.putString("firstPlayerName", placar.firstPlayerName)
+                        edShared.putString("secondPlayerName",placar.secondPlayerName )
+                        edShared.putBoolean("useTimer",placar.useTimer)
                         edShared.commit()
             }
 
 
-            fun openConfig() {
-                        val sharedFilename = "configPlacar"
-                        val sp:SharedPreferences = getSharedPreferences(sharedFilename,Context.MODE_PRIVATE)
-                        this.placar.nome_partida = sp.getString("matchname","Jogo Padrão").toString()
-              //          this.placar.has_timer = sp.getBoolean("has_timer",false)
+            private fun loadConfig () {
+                        val sp:SharedPreferences = super.getSharedPreferences( "configPlacar", Context.MODE_PRIVATE)
+                        this.placar.nomePartida = sp.getString("matchName","Jogo Padrão").toString()
+                        this.placar.firstPlayerName = sp.getString("firstPlayerName", "").toString()
+
+                        this.initInterface( this.placar );
             }
 
 
-            fun initInterface(){
-                        val tv :TextView = findViewById<TextView>(R.id.nomePartida)
-                        tv.setText(placar.nome_partida)
-
-                     //   val sw= findViewById<Switch>(R.id.swTimer)
-                     //   sw.isChecked=placar.has_timer
-            }
-
-
-
-            fun updatePlacarConfig(){
-                        val tv= findViewById<TextView>(R.id.nomePartida)
-                //        val sw= findViewById<Switch>(R.id.swTimer)
-
-                        this.placar.nome_partida = tv.text.toString()
-               //         this.placar.has_timer = sw.isChecked
+            private fun initInterface ( placar :Placar) {
+                        super.findViewById<EditText>( R.id.inputNomePartida).setText( placar.nomePartida)
+                        super.findViewById<EditText>( R.id.inputFirstPlayerName).setText( placar.firstPlayerName)
+                        super.findViewById<EditText>( R.id.inputSecondPlayerName).setText( placar.secondPlayerName )
+                        super.findViewById<Switch>( R.id.useTimer).isChecked = placar.useTimer
             }
 
 
 
-            fun openPlacar(v: View){ //Executa ao click do Iniciar Jogo
-                        updatePlacarConfig() //Pega da Interface e joga no placar
-                        saveConfig() //Salva no Shared preferences
+            private fun updatePlacarConfig () {
+
+                    this.placar.nomePartida  = findViewById<TextView>(R.id.nomePartida).toString()
+                    this.placar.firstPlayerName = findViewById<TextView>(R.id.inputFirstPlayerName).toString()
+                    this.placar.secondPlayerName = super.findViewById<TextView>(R.id.inputSecondPlayerName).toString()
+                    this.placar.useTimer = super.findViewById<Switch>(R.id.useTimer).isEnabled
+            }
+
+
+
+            fun openPlacar (v: View) { //Executa ao click do Iniciar Jogo
+                        this.updatePlacarConfig() //Pega da Interface e joga no placar
+                        this.saveConfig() //Salva no Shared preferences
 
                         val intent = Intent(this, PlacarActivity::class.java).apply{
                                     putExtra("placar", placar)
                         }
 
-                        startActivity(intent)
+                        super.startActivity( intent )
             }
 }

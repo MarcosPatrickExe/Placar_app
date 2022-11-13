@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,113 +9,160 @@
 
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/backgroundImage"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            app:srcCompat="@drawable/table_tennis_background_portrait3"
-        />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/table_tennis_background_portrait3" />
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/backgroundGradient"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/fully_gradient_background"
-        >
+            android:src="@drawable/fully_gradient_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="440dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="163dp"
-                    android:layout_marginEnd="0dp"
-                    android:layout_marginBottom="128dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/nomePartida"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Nome da Partida:"
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/inputNomePartida"
-                            android:layout_width="280dp"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:ems="10"
-                            android:inputType="textPersonName"
-                            android:text="Noma da partida"
-                            android:textColor="@color/white"
-                            android:textSize="22sp" />
+<!--
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:layout_marginTop="540dp"
+            android:background="@color/skyblue_transparent2"
+        />
+-->
 
 
-                        <TextView
-                            android:id="@+id/txtFirstPlayerName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="40dp"
-                            android:text="Nome do primeiro jogador:"
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
+        <LinearLayout
+            android:id="@+id/formBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="103dp"
+            android:orientation="vertical"
+            android:paddingLeft="49dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-                        <EditText
-                            android:id="@+id/inputFirstPlayerName"
-                            android:layout_width="280dp"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:ems="10"
-                            android:inputType="textPersonName"
-                            android:text="Player 1"
-                            android:textColor="@color/white"
-                            android:textSize="22sp" />
+                <TextView
+                    android:id="@+id/nomePartida"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nome da Partida:"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/txtSecondtPlayerName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="40dp"
-                            android:text="Nome do segundo jogador:"
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/inputSecondPlayerName"
-                            android:layout_width="280dp"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
-                            android:ems="10"
-                            android:inputType="textPersonName"
-                            android:text="Player 2"
-                            android:textColor="@color/white"
-                            android:textSize="22sp" />
+                <EditText
+                    android:id="@+id/inputNomePartida"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Noma da partida"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
 
 
-                        <Button
-                            android:id="@+id/btnIniciarPartida"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="40dp"
-                            android:backgroundTint="@color/white"
-                            android:onClick="openPlacar"
-                            android:text="Iniciar Jogo"
-                            android:textColor="@color/skyblue_light"
-                            android:textSize="22sp"
-                            android:textStyle="bold" />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/txtFirstPlayerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="Nome do primeiro jogador:"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/inputFirstPlayerName"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Player 1"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/txtSecondtPlayerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="Nome do segundo jogador:"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/inputSecondPlayerName"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Player 2"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/txtUseTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="Usar temporizador?"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <Switch
+                    android:id="@+id/useTimer"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:background="@color/skyblue_transparent2"
+                    android:checked="true"
+                    android:text="sim"
+                    android:textColor="@color/white"
+                    android:layoutDirection="rtl"
+                    android:textOff="não"
+                    android:textOn="sim"
+                    android:textSize="30sp"
+               />
+        </LinearLayout>
 
 
-        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/formBox"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-</FrameLayout>
+                <Button
+                    android:id="@+id/btnIniciarPartida"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:onClick="openPlacar"
+                    android:text="Iniciar Jogo"
+                    android:textColor="@color/skyblue_light"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+        </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

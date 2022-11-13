@@ -8,6 +8,10 @@
 
 
         <!--   BACKGROUND IMAGE   -->
+        <!--  app:srcCompat="@drawable/top_gradient" -->
+        <!--   BACKGROUND GRADIENT  -->
+
+
         <ImageView
             android:id="@+id/backgroundImage"
             android:layout_width="match_parent"
@@ -16,16 +20,11 @@
             android:src="@drawable/background_ping_pong"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <!--  app:srcCompat="@drawable/top_gradient" -->
-
-
-        <!--   BACKGROUND GRADIENT  -->
-
 
         <ImageView
             android:id="@+id/gradientt"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="220dp"
             android:background="@drawable/top_gradient"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +33,7 @@
             android:id="@+id/nameFirstPlayer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="88dp"
+            android:layout_marginTop="68dp"
             android:background="@color/red_background"
             android:paddingHorizontal="20dp"
             android:paddingVertical="5dp"
@@ -65,20 +64,77 @@
             app:layout_constraintStart_toEndOf="@+id/nameFirstPlayer"
             app:layout_constraintTop_toTopOf="@+id/nameFirstPlayer" />
 
-        <Button
-            android:id="@+id/btnSalvarPlacar"
+        <ImageView
+            android:id="@+id/gradient2"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:background="@drawable/bottom_gradient"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="492dp"
-            android:backgroundTint="@color/white"
+            android:background="@drawable/button_shape"
             android:onClick="saveGame"
-            android:text="Salvar Placar"
-            android:textColor="@color/skyblue_light"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            android:padding="5dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/arrow_back_icon_44"
+            app:layout_constraintEnd_toStartOf="@+id/btnUndo"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomePartida" />
+            tools:layout_editor_absoluteY="628dp" />
+
+        <ImageButton
+            android:id="@+id/btnUndo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/button_shape"
+            android:backgroundTint="@color/white"
+            android:onClick="lerUltimosJogos"
+            android:padding="5dp"
+            android:src="@drawable/ic_cached_44"
+            app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+            app:layout_constraintEnd_toStartOf="@+id/btnPause"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnBack"
+            app:layout_constraintTop_toTopOf="@+id/btnBack" />
+
+        <ImageButton
+            android:id="@+id/btnPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/button_shape"
+            android:backgroundTint="@color/white"
+            android:onClick="lerUltimosJogos"
+            android:padding="5dp"
+            android:src="@drawable/pause_icon_44"
+            app:layout_constraintBottom_toBottomOf="@+id/btnUndo"
+            app:layout_constraintEnd_toStartOf="@+id/btnPlay"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnUndo"
+            app:layout_constraintTop_toTopOf="@+id/btnUndo" />
+
+
+        <ImageButton
+            android:id="@+id/btnPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button_shape"
+            android:backgroundTint="@color/white"
+            android:onClick="lerUltimosJogos"
+            android:padding="5dp"
+            android:src="@drawable/play_icon_44"
+            app:layout_constraintBottom_toBottomOf="@+id/btnPause"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnPause"
+            app:layout_constraintTop_toTopOf="@+id/btnPause" />
 
         <TextView
             android:id="@+id/firstPlayerScore"
@@ -107,7 +163,7 @@
             android:id="@+id/nomePartida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:maxLines="2"
             android:text="Partida número 1"
             android:textAlignment="center"
@@ -119,26 +175,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btnVerJogos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="@color/white"
-            android:onClick="lerUltimosJogos"
-            android:text="Desfazer"
-            android:textColor="@color/skyblue_light"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnSalvarPlacar"
-            app:layout_constraintVertical_bias="0.11" />
-
         <TextView
             android:id="@+id/setPlayerUm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="158dp"
             android:text="SET 0"
             android:textColor="@color/white"
             android:textSize="25sp"
@@ -146,21 +187,24 @@
             app:layout_constraintEnd_toStartOf="@+id/setPlayerDois"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="364dp" />
+            app:layout_constraintTop_toBottomOf="@+id/nameFirstPlayer" />
 
         <TextView
             android:id="@+id/setPlayerDois"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="140dp"
             android:text="SET 0"
-            android:layout_marginStart="180dp"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/setPlayerUm"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/setPlayerUm"
-            tools:layout_editor_absoluteY="364dp" />
+            app:layout_constraintTop_toTopOf="@+id/setPlayerUm" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

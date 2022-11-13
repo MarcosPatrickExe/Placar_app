@@ -24,39 +24,39 @@ import java.nio.charset.StandardCharsets
 
 class PlacarActivity : AppCompatActivity() {
 
-            lateinit var placar :Placar
-            lateinit var resultadoJogo: TextView
-            var game =0
+            lateinit var placar :Placar;
+            lateinit var resultadoJogo: TextView;
+            var game = 0;
 
             override fun onCreate(savedInstanceState: Bundle?) {
                     super.onCreate(savedInstanceState)
                     super.setContentView(R.layout.activity_placar)
 
-                    placar = super.getIntent().getExtras()?.getSerializable("placar") as Placar
+                    this.placar = super.getIntent().getExtras()?.getSerializable("placar") as Placar;
 
                     //Mudar o nome da partida
-                    val nomePartida = findViewById(R.id.nomePartida) as TextView
-                    nomePartida.text = placar.nome_partida
-                    ultimoJogos()
+                    val nomePartida = findViewById(R.id.nomePartida) as TextView;
+                    nomePartida.text = placar.nome_partida;
+                    this.ultimoJogos();
             }
 
 
             fun alteraPontosJogadorUm (v:View){
-                        placar.scoreFirstPlayer++;
+                        this.placar.scoreFirstPlayer++;
 
-                        if( placar.scoreFirstPlayer == 15.toShort() ) {
-                                placar.setFirstPlayer++;
-                                placar.scoreFirstPlayer = 0;
+                        if( this.placar.scoreFirstPlayer == 15.toShort() ) {
+                                this.placar.setFirstPlayer++;
+                                this.placar.scoreFirstPlayer = 0;
                         }
                         super.findViewById<TextView>( R.id.firstPlayerScore).text = placar.scoreFirstPlayer.toString() ;
             }
 
-            fun alteraPontosJogadorDois (v:View){
-                        placar.scoreSecondPlayer++;
+            fun alteraPontosJogadorDois (v :View){
+                        this.placar.scoreSecondPlayer++;
 
-                        if( placar.scoreSecondPlayer == 15.toShort() ) {
-                                placar.setSecondPlayer++;
-                                placar.scoreSecondPlayer = 0;
+                        if( this.placar.scoreSecondPlayer == 15.toShort() ) {
+                                 this.placar.setSecondPlayer++;
+                                 this.placar.scoreSecondPlayer = 0;
                         }
                         super.findViewById<TextView>( R.id.secondPlayerScore).text = placar.scoreSecondPlayer.toString() ;
             }
@@ -66,28 +66,29 @@ class PlacarActivity : AppCompatActivity() {
 
             fun saveGame(v: View) {
 
-                        val sharedFilename = "PreviousGames"
-                        val sp: SharedPreferences = getSharedPreferences(sharedFilename, Context.MODE_PRIVATE)
-                        var edShared = sp.edit()
-                        //Salvar o número de jogos já armazenados
-                        var numMatches= sp.getInt("numberMatch",0) + 1
+                        val sharedFilename = "PreviousGames";
+                        val sp: SharedPreferences = getSharedPreferences(sharedFilename, Context.MODE_PRIVATE);
+                        val edShared = sp.edit();
+
+                        //Salvar o número de jogos já armazenados mais o jogo atual
+                        var numMatches = sp.getInt("numberMatch", 0) + 1;
                         edShared.putInt("numberMatch", numMatches)
 
                         //Escrita em Bytes de Um objeto Serializável
-                        var dt= ByteArrayOutputStream()
+                        var dt = ByteArrayOutputStream();
                         var oos = ObjectOutputStream(dt);
                         oos.writeObject(placar);
 
                         //Salvar como "match"
-                        edShared.putString("match"+numMatches, dt.toString(StandardCharsets.ISO_8859_1.name()))
-                        edShared.commit()
+                        edShared.putString("match"+numMatches, dt.toString(StandardCharsets.ISO_8859_1.name()));
+                        edShared.commit();
             }
 
 
 
             fun lerUltimosJogos(v: View){
                             val sharedFilename = "PreviousGames"
-                            val sp: SharedPreferences = getSharedPreferences(sharedFilename, Context.MODE_PRIVATE)
+                            val sp: SharedPreferences =  super.getSharedPreferences(sharedFilename, Context.MODE_PRIVATE)
 
                             var meuObjString :String = sp.getString("match1","").toString()
 
@@ -104,10 +105,10 @@ class PlacarActivity : AppCompatActivity() {
 
 
 
-            fun ultimoJogos () {
-                            val sharedFilename = "PreviousGames"
-                            val sp:SharedPreferences = getSharedPreferences(sharedFilename,Context.MODE_PRIVATE)
-                            var matchStr:String = sp.getString("match1","").toString()
+            private fun ultimoJogos () {
+                            val sharedFilename = "PreviousGames";
+                            val sp :SharedPreferences = super.getSharedPreferences( sharedFilename,Context.MODE_PRIVATE);
+                            var matchStr :String = sp.getString("match1","").toString();
                            // Log.v("PDM22", matchStr)
 
 
