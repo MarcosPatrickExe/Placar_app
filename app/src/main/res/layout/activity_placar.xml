@@ -24,7 +24,7 @@
         <ImageView
             android:id="@+id/gradientt"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="260dp"
             android:background="@drawable/top_gradient"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -72,19 +72,40 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
+
+        <TextView
+            android:id="@+id/txtTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:text="00:00"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:drawableLeft="@drawable/ic_alarm_44"
+            android:drawablePadding="10dp"
+            android:background="@color/green_dark_middle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/setPlayerUm" />
+
         <ImageButton
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:background="@drawable/button_shape"
             android:onClick="saveGame"
             android:padding="5dp"
-            android:layout_marginStart="20dp"
             android:src="@drawable/arrow_back_icon_44"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnUndo"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="628dp" />
+            app:layout_constraintTop_toBottomOf="@+id/setPlayerUm"
+            app:layout_constraintVertical_bias="0.884" />
 
         <ImageButton
             android:id="@+id/btnUndo"
@@ -165,11 +186,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:maxLines="2"
-            android:text="Partida número 1"
+            android:text="Partida 1"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="28sp"
-            android:textStyle="bold|italic"
+            android:textSize="30sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"

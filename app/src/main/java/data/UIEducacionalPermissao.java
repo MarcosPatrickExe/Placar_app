@@ -61,10 +61,12 @@ public  class UIEducacionalPermissao extends DialogFragment {
                             try {
                                     // Instantiate the NoticeDialogListener so we can send events to the host
                                     listener = (NoticeDialogListener) context;
+
                             } catch (ClassCastException e) {
                                     // The activity doesn't implement the interface, throw exception
-                                    throw new ClassCastException(getActivity().toString()
-                                            + " must implement NoticeDialogListener");
+                                    throw new ClassCastException(
+                                            getActivity().toString() + " must implement NoticeDialogListener"
+                                    );
                             }
             }
 }

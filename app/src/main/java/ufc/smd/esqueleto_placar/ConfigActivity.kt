@@ -15,7 +15,16 @@ import data.Placar
 
 class ConfigActivity : AppCompatActivity() {
 
-            var placar: Placar = Placar("Jogo sem Config","Marcos", "Patrick",10, 4, 1, 2)
+            var placar: Placar = Placar(
+                "Jogo sem Config",
+                "Marcos",
+                "Patrick",
+                10,
+                4,
+                1,
+                2,
+                true
+            )
 
 
             override fun onCreate (savedInstanceState: Bundle?) {
@@ -25,26 +34,19 @@ class ConfigActivity : AppCompatActivity() {
                         //Log.v("PDM22",placar.nome_partida)
                         //Log.v("PDM22",placar.has_timer.toString())
 
-                        this.loadConfig()
+                        this.loadConfig();
             }
 
 
-            private fun saveConfig () {
-                        val sp :SharedPreferences = super.getSharedPreferences("configPlacar", Context.MODE_PRIVATE)
-                        val edShared = sp.edit()
 
-                        edShared.putString("matchName", placar.nomePartida)
-                        edShared.putString("firstPlayerName", placar.firstPlayerName)
-                        edShared.putString("secondPlayerName",placar.secondPlayerName )
-                        edShared.putBoolean("useTimer",placar.useTimer)
-                        edShared.commit()
-            }
 
 
             private fun loadConfig () {
                         val sp:SharedPreferences = super.getSharedPreferences( "configPlacar", Context.MODE_PRIVATE)
                         this.placar.nomePartida = sp.getString("matchName","Jogo Padrão").toString()
                         this.placar.firstPlayerName = sp.getString("firstPlayerName", "").toString()
+                        this.placar.secondPlayerName = sp.getString("secondPlayerName", "").toString()
+                        this.placar.useTimer = sp.getBoolean("useTimer",  true);
 
                         this.initInterface( this.placar );
             }
@@ -60,23 +62,34 @@ class ConfigActivity : AppCompatActivity() {
 
 
             private fun updatePlacarConfig () {
+                        this.placar.nomePartida  = findViewById<TextView>(R.id.nomePartida).toString();
+                        this.placar.firstPlayerName = findViewById<TextView>(R.id.inputFirstPlayerName).toString();
+                        this.placar.secondPlayerName = super.findViewById<TextView>(R.id.inputSecondPlayerName).toString();
+                        this.placar.useTimer = super.findViewById<Switch>(R.id.useTimer).isEnabled
 
-                    this.placar.nomePartida  = findViewById<TextView>(R.id.nomePartida).toString()
-                    this.placar.firstPlayerName = findViewById<TextView>(R.id.inputFirstPlayerName).toString()
-                    this.placar.secondPlayerName = super.findViewById<TextView>(R.id.inputSecondPlayerName).toString()
-                    this.placar.useTimer = super.findViewById<Switch>(R.id.useTimer).isEnabled
+                        this.saveConfig( this.placar ); //Salva no Shared preferences
             }
 
 
+            private fun saveConfig (  placar :Placar ) {
+                        val sp :SharedPreferences = super.getSharedPreferences("configPlacar", Context.MODE_PRIVATE);
+                        val edShared = sp.edit();
+
+                        edShared.putString("matchName", placar.nomePartida);
+                        edShared.putString("firstPlayerName", placar.firstPlayerName);
+                        edShared.putString("secondPlayerName", placar.secondPlayerName );
+                        edShared.putBoolean("useTimer", placar.useTimer);
+                        edShared.commit();
+            }
+
 
             fun openPlacar (v: View) { //Executa ao click do Iniciar Jogo
-                        this.updatePlacarConfig() //Pega da Interface e joga no placar
-                        this.saveConfig() //Salva no Shared preferences
+                        this.updatePlacarConfig(); //Pega da Interface e joga no placar
 
                         val intent = Intent(this, PlacarActivity::class.java).apply{
-                                    putExtra("placar", placar)
+                                    this.putExtra("placar", placar)
                         }
 
-                        super.startActivity( intent )
+                        super.startActivity( intent );
             }
 }

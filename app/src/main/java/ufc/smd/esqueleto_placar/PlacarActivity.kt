@@ -24,6 +24,7 @@ import java.nio.charset.StandardCharsets
 
 class PlacarActivity : AppCompatActivity() {
 
+            // objeto Placar inicializado na classe "ConfigActivity"
             lateinit var placar :Placar;
             lateinit var resultadoJogo: TextView;
             var game = 0;
@@ -34,34 +35,13 @@ class PlacarActivity : AppCompatActivity() {
 
                     this.placar = super.getIntent().getExtras()?.getSerializable("placar") as Placar;
 
-                    //Mudar o nome da partida
-                    val nomePartida = findViewById(R.id.nomePartida) as TextView;
-                    nomePartida.text = placar.nome_partida;
+
+                    super.findViewById<TextView>(R.id.nomePartida).setText( this.placar.nomePartida );
+                    super.findViewById<TextView>(R.id.nameFirstPlayer).setText( this.placar.firstPlayerName );
+                    super.findViewById<TextView>(R.id.nameSecondPlayer).setText( this.placar.secondPlayerName );
+
                     this.ultimoJogos();
             }
-
-
-            fun alteraPontosJogadorUm (v:View){
-                        this.placar.scoreFirstPlayer++;
-
-                        if( this.placar.scoreFirstPlayer == 15.toShort() ) {
-                                this.placar.setFirstPlayer++;
-                                this.placar.scoreFirstPlayer = 0;
-                        }
-                        super.findViewById<TextView>( R.id.firstPlayerScore).text = placar.scoreFirstPlayer.toString() ;
-            }
-
-            fun alteraPontosJogadorDois (v :View){
-                        this.placar.scoreSecondPlayer++;
-
-                        if( this.placar.scoreSecondPlayer == 15.toShort() ) {
-                                 this.placar.setSecondPlayer++;
-                                 this.placar.scoreSecondPlayer = 0;
-                        }
-                        super.findViewById<TextView>( R.id.secondPlayerScore).text = placar.scoreSecondPlayer.toString() ;
-            }
-
-
 
 
             fun saveGame(v: View) {
@@ -137,4 +117,29 @@ class PlacarActivity : AppCompatActivity() {
                         }
             }
 
+
+
+
+            fun alteraPontosJogadorUm (v:View){
+                        this.placar.scoreFirstPlayer++;
+
+                        if( this.placar.scoreFirstPlayer == 15.toShort() ) {
+                                    this.placar.setFirstPlayer++;
+                                    this.placar.scoreFirstPlayer = 0;
+                                    super.findViewById<TextView>( R.id.setPlayerUm ).text =  this.placar.setFirstPlayer.toString();
+                        }
+                        super.findViewById<TextView>( R.id.firstPlayerScore).text = placar.scoreFirstPlayer.toString() ;
+            }
+
+
+            fun alteraPontosJogadorDois (v :View){
+                        this.placar.scoreSecondPlayer++;
+
+                        if( this.placar.scoreSecondPlayer == 15.toShort() ) {
+                                    this.placar.setSecondPlayer++;
+                                    this.placar.scoreSecondPlayer = 0;
+                                    super.findViewById<TextView>( R.id.setPlayerDois ).text =  this.placar.setSecondPlayer.toString();
+                        }
+                        super.findViewById<TextView>( R.id.secondPlayerScore).text = placar.scoreSecondPlayer.toString() ;
+            }
 }

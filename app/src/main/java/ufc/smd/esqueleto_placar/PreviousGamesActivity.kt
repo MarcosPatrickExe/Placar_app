@@ -78,7 +78,7 @@ class PreviousGamesActivity : AppCompatActivity() {
                                                     var placar: Placar = obi.readObject() as Placar
                                                     data.add(placar)
                                                     //Log.v("PDM", "match"+i+" :"+aux)
-                                                    Log.v("PDM", "Placar: "+placar.nome_partida +" Res:"+placar.getMatchResult())
+                                                    Log.v("PDM", "Placar: "+placar.nomePartida +" Res:"+placar.getMatchResult())
                                             }
                                 }
                         }
@@ -111,7 +111,7 @@ class PreviousGamesActivity : AppCompatActivity() {
                                                 var placar: Placar = obi.readObject() as Placar;
 
                                                     //Log.v("PDM", "match"+i+" :"+aux)
-                                                    Log.v("PDM", "Placar: "+placar.nome_partida +" Res:"+placar.getMatchResult());
+                                                    Log.v("PDM", "Placar: "+placar.nomePartida +" Res:"+placar.getMatchResult());
                                     }
                                 }
                        }
