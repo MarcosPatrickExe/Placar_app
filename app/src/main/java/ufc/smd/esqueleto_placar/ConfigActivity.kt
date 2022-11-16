@@ -38,9 +38,6 @@ class ConfigActivity : AppCompatActivity() {
             }
 
 
-
-
-
             private fun loadConfig () {
                         val sp:SharedPreferences = super.getSharedPreferences( "configPlacar", Context.MODE_PRIVATE)
                         this.placar.nomePartida = sp.getString("matchName","Jogo Padrão").toString()
@@ -50,7 +47,6 @@ class ConfigActivity : AppCompatActivity() {
 
                         this.initInterface( this.placar );
             }
-
 
             private fun initInterface ( placar :Placar) {
                         super.findViewById<EditText>( R.id.inputNomePartida).setText( placar.nomePartida)

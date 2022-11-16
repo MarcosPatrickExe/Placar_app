@@ -10,6 +10,7 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.getSystemService
 import data.Placar
@@ -30,116 +31,109 @@ class PlacarActivity : AppCompatActivity() {
             var game = 0;
 
             override fun onCreate(savedInstanceState: Bundle?) {
-                    super.onCreate(savedInstanceState)
-                    super.setContentView(R.layout.activity_placar)
+                        super.onCreate(savedInstanceState)
+                        super.setContentView(R.layout.activity_placar)
 
-                    this.placar = super.getIntent().getExtras()?.getSerializable("placar") as Placar;
+                        this.placar = super.getIntent().getExtras()?.getSerializable("placar") as Placar;
 
 
-                    super.findViewById<TextView>(R.id.nomePartida).setText( this.placar.nomePartida );
-                    super.findViewById<TextView>(R.id.nameFirstPlayer).setText( this.placar.firstPlayerName );
-                    super.findViewById<TextView>(R.id.nameSecondPlayer).setText( this.placar.secondPlayerName );
+                        super.findViewById<TextView>(R.id.nomePartida).text = this.placar.nomePartida;
+                        super.findViewById<TextView>(R.id.nameFirstPlayer).text = this.placar.firstPlayerName;
+                        super.findViewById<TextView>(R.id.nameSecondPlayer).text  = this.placar.secondPlayerName;
 
-                    this.ultimoJogos();
+
+                        if (placar.useTimer ) {
+                                 super.findViewById<TextView>(R.id.txtTimer).visibility = View.VISIBLE;
+                                 super.findViewById<ImageButton>(R.id.btnPause).visibility = View.VISIBLE;
+                                 super.findViewById<ImageButton>(R.id.txtTimer).visibility = View.VISIBLE;
+                        }else{
+                                super.findViewById<TextView>(R.id.txtTimer).visibility = View.INVISIBLE;
+                                super.findViewById<ImageButton>(R.id.btnPause).visibility = View.INVISIBLE;
+                                super.findViewById<ImageButton>(R.id.txtTimer).visibility = View.INVISIBLE;
+                        }
+
+                        this.ultimoJogos();
+            }
+
+
+            private fun ultimoJogos () {
+                            val sharedFilename :String = "PreviousGames";
+                            val sp :SharedPreferences = super.getSharedPreferences( sharedFilename,Context.MODE_PRIVATE);
+                            var matchNumber  = sp.getInt("numberMatch", 0);
+
+                           // var matchStr :String = sp.getString("match1","").toString();
+                            // Log.v("PDM22", matchStr)
+
+
+                            if ( matchNumber != 0 ){
+                                        var matchStr  = sp.getString("match$matchNumber", "");
+
+                                        var dis = ByteArrayInputStream( matchStr?.toByteArray( Charsets.ISO_8859_1))
+                                        var oos = ObjectInputStream(dis)
+                                        var prevPlacar :Placar = oos.readObject() as Placar
+
+                                        Log.v("PDM22", "Jogo Salvo:"+ prevPlacar.getMatchResult())
+                            }
             }
 
 
             fun saveGame(v: View) {
 
-                        val sharedFilename = "PreviousGames";
-                        val sp: SharedPreferences = getSharedPreferences(sharedFilename, Context.MODE_PRIVATE);
-                        val edShared = sp.edit();
-
-                        //Salvar o número de jogos já armazenados mais o jogo atual
-                        var numMatches = sp.getInt("numberMatch", 0) + 1;
-                        edShared.putInt("numberMatch", numMatches)
-
-                        //Escrita em Bytes de Um objeto Serializável
-                        var dt = ByteArrayOutputStream();
-                        var oos = ObjectOutputStream(dt);
-                        oos.writeObject(placar);
-
-                        //Salvar como "match"
-                        edShared.putString("match"+numMatches, dt.toString(StandardCharsets.ISO_8859_1.name()));
-                        edShared.commit();
-            }
-
-
-
-            fun lerUltimosJogos(v: View){
-                            val sharedFilename = "PreviousGames"
-                            val sp: SharedPreferences =  super.getSharedPreferences(sharedFilename, Context.MODE_PRIVATE)
-
-                            var meuObjString :String = sp.getString("match1","").toString()
-
-
-                            if (meuObjString.length >=1) {
-                                    var dis = ByteArrayInputStream( meuObjString.toByteArray(Charsets.ISO_8859_1))
-                                    var oos = ObjectInputStream(dis)
-                                    var placarAntigo :Placar = oos.readObject() as Placar
-
-                                    Log.v("SMD26",placarAntigo.getMatchResult())
-                           }
-            }
-
-
-
-
-            private fun ultimoJogos () {
                             val sharedFilename = "PreviousGames";
-                            val sp :SharedPreferences = super.getSharedPreferences( sharedFilename,Context.MODE_PRIVATE);
-                            var matchStr :String = sp.getString("match1","").toString();
-                           // Log.v("PDM22", matchStr)
+                            val sp: SharedPreferences = getSharedPreferences(sharedFilename, Context.MODE_PRIVATE);
+                            val edShared = sp.edit();
 
+                            //Salvar o número de jogos já armazenados mais o jogo atual
+                            var numMatches = sp.getInt("numberMatch", 0) + 1;
+                            edShared.putInt("numberMatch", numMatches)
 
-                            if (matchStr.length >=1){
-                                    var dis = ByteArrayInputStream(matchStr.toByteArray(Charsets.ISO_8859_1))
-                                    var oos = ObjectInputStream(dis)
-                                    var prevPlacar :Placar = oos.readObject() as Placar
+                            //Escrita em Bytes de Um objeto Serializável
+                            var dt = ByteArrayOutputStream();
+                            var oos = ObjectOutputStream(dt);
+                            oos.writeObject(placar);
 
-                                    Log.v("PDM22", "Jogo Salvo:"+ prevPlacar.getMatchResult())
-                            }
+                            //Salvar como "match"
+                            edShared.putString("match"+numMatches, dt.toString(StandardCharsets.ISO_8859_1.name()));
+                            edShared.commit();
             }
 
 
 
-            fun vibrar (v:View){
-                        val buzzer = this.getSystemService<Vibrator>()
-                        val pattern = longArrayOf(0, 200, 100, 300)
+            fun alteraPontosJogadorUm (v:View){
+                            this.placar.scoreFirstPlayer++;
 
-                        buzzer?.let {
+                            if( this.placar.scoreFirstPlayer == 15.toShort() ) {
+                                        this.placar.setFirstPlayer++;
+                                        this.placar.scoreFirstPlayer = 0;
+                                        super.findViewById<TextView>( R.id.setPlayerUm ).text =  this.placar.setFirstPlayer.toString();
+                            }
+                            super.findViewById<TextView>( R.id.firstPlayerScore).text = placar.scoreFirstPlayer.toString() ;
+            }
+
+
+            fun alteraPontosJogadorDois (v :View){
+                            this.placar.scoreSecondPlayer++;
+
+                            if( this.placar.scoreSecondPlayer == 15.toShort() ) {
+                                        this.placar.setSecondPlayer++;
+                                        this.placar.scoreSecondPlayer = 0;
+                                        super.findViewById<TextView>( R.id.setPlayerDois ).text =  this.placar.setSecondPlayer.toString();
+                            }
+                            super.findViewById<TextView>( R.id.secondPlayerScore).text = placar.scoreSecondPlayer.toString() ;
+            }
+
+
+           fun vibrar (v:View){
+                            val buzzer = this.getSystemService<Vibrator>()
+                            val pattern = longArrayOf(0, 200, 100, 300)
+
+                            buzzer?.let {
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                                     buzzer.vibrate(VibrationEffect.createWaveform(pattern, -1))
                                 } else {
                                     //deprecated in API 26
                                     buzzer.vibrate(pattern, -1)
                                 }
-                        }
-            }
-
-
-
-
-            fun alteraPontosJogadorUm (v:View){
-                        this.placar.scoreFirstPlayer++;
-
-                        if( this.placar.scoreFirstPlayer == 15.toShort() ) {
-                                    this.placar.setFirstPlayer++;
-                                    this.placar.scoreFirstPlayer = 0;
-                                    super.findViewById<TextView>( R.id.setPlayerUm ).text =  this.placar.setFirstPlayer.toString();
-                        }
-                        super.findViewById<TextView>( R.id.firstPlayerScore).text = placar.scoreFirstPlayer.toString() ;
-            }
-
-
-            fun alteraPontosJogadorDois (v :View){
-                        this.placar.scoreSecondPlayer++;
-
-                        if( this.placar.scoreSecondPlayer == 15.toShort() ) {
-                                    this.placar.setSecondPlayer++;
-                                    this.placar.scoreSecondPlayer = 0;
-                                    super.findViewById<TextView>( R.id.setPlayerDois ).text =  this.placar.setSecondPlayer.toString();
-                        }
-                        super.findViewById<TextView>( R.id.secondPlayerScore).text = placar.scoreSecondPlayer.toString() ;
-            }
+                            }
+           }
 }

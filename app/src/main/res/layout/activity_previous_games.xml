@@ -20,7 +20,7 @@
         android:id="@+id/gradientt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/fully_gradient_background"
+        android:background="@color/green_dark_middle2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
