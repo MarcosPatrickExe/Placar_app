@@ -1,5 +1,4 @@
 package adapters
-
 import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import data.Placar
 import ufc.smd.esqueleto_placar.R
+
+
 
 class CustomAdapter(private val mList: List<Placar>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
@@ -28,8 +29,8 @@ class CustomAdapter(private val mList: List<Placar>) : RecyclerView.Adapter<Cust
     // Ligando o Recycler view a um View Holder
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val imageView: ImageView = ItemView.findViewById(R.id.imageview)
-        val tvNomePartida: TextView = ItemView.findViewById(R.id.tvNomePartida)
-        val tvResultadoJogo: TextView = ItemView.findViewById(R.id.tvResultadoJogo)
+        val tvNomePartida: TextView = ItemView.findViewById(R.id.txtMatchName)
+        val tvResultadoJogo: TextView = ItemView.findViewById(R.id.firstPlayerScore) //tvResultadoJogo
         val lnCell: LinearLayout = ItemView.findViewById(R.id.lnCell)
     }
 
@@ -39,7 +40,7 @@ class CustomAdapter(private val mList: List<Placar>) : RecyclerView.Adapter<Cust
         val placarAnterior = mList[position]
 
         //alimentando os elementos a partir do objeto placar
-        holder.tvNomePartida.text = placarAnterior.nome_partida
+        holder.tvNomePartida.text = placarAnterior.nomePartida
         holder.tvResultadoJogo.text = placarAnterior.getMatchResult()
 
         holder.lnCell.setOnClickListener{

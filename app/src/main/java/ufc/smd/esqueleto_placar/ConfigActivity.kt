@@ -29,7 +29,8 @@ class ConfigActivity : AppCompatActivity() {
 
             override fun onCreate (savedInstanceState: Bundle?) {
                         super.onCreate(savedInstanceState)
-                        setContentView(R.layout.activity_config)
+                        super.setContentView(R.layout.activity_config)
+                        super.getSupportActionBar()?.hide();
                        // placar= getIntent().getExtras()?.getSerializable("placar") as Placar
                         //Log.v("PDM22",placar.nome_partida)
                         //Log.v("PDM22",placar.has_timer.toString())
@@ -49,6 +50,8 @@ class ConfigActivity : AppCompatActivity() {
             }
 
             private fun initInterface ( placar :Placar) {
+                        Log.v("PDM 2022: ", "Placar Name: ${placar.nomePartida}  /// Nome P1: ${placar.firstPlayerName}");
+
                         super.findViewById<EditText>( R.id.inputNomePartida).setText( placar.nomePartida)
                         super.findViewById<EditText>( R.id.inputFirstPlayerName).setText( placar.firstPlayerName)
                         super.findViewById<EditText>( R.id.inputSecondPlayerName).setText( placar.secondPlayerName )

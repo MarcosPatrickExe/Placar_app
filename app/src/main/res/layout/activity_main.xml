@@ -10,60 +10,66 @@
     tools:context=".MainActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/table_tennis_background_portrait3"
-    /><!-- app:srcCompact="@drawable/nome_da_imagem"
-        android:src="@drawable/table_tennis_background_portrait3"
-    -->
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/gradient_background"
-        >
-
-            <LinearLayout
+            <ImageView
+                android:id="@+id/imageView3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true">
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/table_tennis_background_portrait3"
+            /><!-- app:srcCompact="@drawable/nome_da_imagem"
+                android:src="@drawable/table_tennis_background_portrait3"
+            -->
+
+            <ImageView
+                android:id="@+id/gradient"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/gradient_background"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+            >
+    <!--
+      android:background="@drawable/gradient_background"
+-->
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="40dp"
+                    android:text="Ping-Pong \n game"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="60dp"
+                    android:textStyle="bold" />
 
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Ping-Pong \n game"
-                        android:layout_marginTop="40dp"
-                        android:textSize="60dp"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:textAlignment="center"
-                    />
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
                     <Button
                         android:id="@+id/btnJogar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/white"
+                        android:contentDescription="playGameBtn"
+                        android:drawableLeft="@drawable/ic_play_circle_outline_44"
                         android:onClick="openConfig"
                         android:text="Jogar"
-                        android:contentDescription="playGameBtn"
-                        android:layout_marginTop="340dp"
-                        android:drawableLeft="@drawable/ic_play_circle_outline_44"
                         android:textColor="@color/skyblue_light"
                         android:textSize="20sp" />
 
@@ -71,27 +77,27 @@
                         android:id="@+id/btnHistorico"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
                         android:backgroundTint="@color/white"
+                        android:drawableLeft="@drawable/ic_notes_44"
                         android:onClick="openPreviusGames"
                         android:text="Histórico"
-                        android:drawableLeft="@drawable/ic_notes_44"
-                        android:layout_marginTop="30dp"
                         android:textColor="@color/skyblue_light"
                         android:textSize="20sp" />
-<!--
-                    <Button
-                        android:id="@+id/btnPermissao"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
-                        android:onClick="openPermission"
-                        android:text="Permissão"
-                        android:layout_marginTop="30dp"
-                        android:textColor="@color/skyblue_light"
-                        android:textSize="20sp" />
--->
-            </LinearLayout>
+                    <!--
+                            <Button
+                                android:id="@+id/btnPermissao"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/white"
+                                android:onClick="openPermission"
+                                android:text="Permissão"
+                                android:layout_marginTop="30dp"
+                                android:textColor="@color/skyblue_light"
+                                android:textSize="20sp" />
+        -->
+                </LinearLayout>
 
-    </RelativeLayout>
+            </RelativeLayout>
 
 </FrameLayout>
