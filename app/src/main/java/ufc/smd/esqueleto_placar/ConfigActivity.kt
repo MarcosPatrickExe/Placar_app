@@ -41,12 +41,17 @@ class ConfigActivity : AppCompatActivity() {
 
             private fun loadConfig () {
                         val sp:SharedPreferences = super.getSharedPreferences( "configPlacar", Context.MODE_PRIVATE)
-                        this.placar.nomePartida = sp.getString("matchName","Jogo Padrão").toString()
-                        this.placar.firstPlayerName = sp.getString("firstPlayerName", "").toString()
-                        this.placar.secondPlayerName = sp.getString("secondPlayerName", "").toString()
-                        this.placar.useTimer = sp.getBoolean("useTimer",  true);
 
-                        this.initInterface( this.placar );
+                        if( sp.contains("matchName") ){
+                                    Log.v("PDM 2022: ", "Diretamente do SP: matchName: "+sp.getString("matchName","partida_padrão").toString());
+
+                                    this.placar.nomePartida = sp.getString("matchName","") as String
+                                    this.placar.firstPlayerName = sp.getString("firstPlayerName", "") as String
+                                    this.placar.secondPlayerName = sp.getString("secondPlayerName", "") as String
+                                    this.placar.useTimer = sp.getBoolean("useTimer",  false)
+
+                                    this.initInterface( this.placar );
+                        }
             }
 
             private fun initInterface ( placar :Placar) {
@@ -55,16 +60,18 @@ class ConfigActivity : AppCompatActivity() {
                         super.findViewById<EditText>( R.id.inputNomePartida).setText( placar.nomePartida)
                         super.findViewById<EditText>( R.id.inputFirstPlayerName).setText( placar.firstPlayerName)
                         super.findViewById<EditText>( R.id.inputSecondPlayerName).setText( placar.secondPlayerName )
-                        super.findViewById<Switch>( R.id.useTimer).isChecked = placar.useTimer
+                        super.findViewById<Switch>( R.id.useTimer).setChecked( placar.useTimer )
             }
 
 
 
             private fun updatePlacarConfig () {
-                        this.placar.nomePartida  = findViewById<TextView>(R.id.nomePartida).toString();
+                        this.placar.nomePartida  = findViewById<TextView>(R.id.nomePartida).text.toString();
                         this.placar.firstPlayerName = findViewById<TextView>(R.id.inputFirstPlayerName).toString();
                         this.placar.secondPlayerName = super.findViewById<TextView>(R.id.inputSecondPlayerName).toString();
                         this.placar.useTimer = super.findViewById<Switch>(R.id.useTimer).isEnabled
+
+                        Log.v("PDM 2022: ", "Salvando objeto em config: Placar Name: ${placar.nomePartida}  /// Nome P1: ${placar.firstPlayerName}");
 
                         this.saveConfig( this.placar ); //Salva no Shared preferences
             }
@@ -86,7 +93,10 @@ class ConfigActivity : AppCompatActivity() {
                         this.updatePlacarConfig(); //Pega da Interface e joga no placar
 
                         val intent = Intent(this, PlacarActivity::class.java).apply{
-                                    this.putExtra("placar", placar)
+                                     //   this.putExtra("placar", placar)
+                                    val bundle = Bundle()
+                                    bundle.putSerializable("placarBundle", placar)
+                                    this.putExtras(bundle )
                         }
 
                         super.startActivity( intent );

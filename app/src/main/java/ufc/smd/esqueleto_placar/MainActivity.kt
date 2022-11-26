@@ -1,5 +1,6 @@
 package ufc.smd.esqueleto_placar
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,9 +12,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
                 super.onCreate(savedInstanceState)
-                setContentView(R.layout.activity_main)
+                super.setContentView(R.layout.activity_main)
 
                 super.getSupportActionBar()?.hide();
+                val sp = super.getSharedPreferences("configPlacar", MODE_PRIVATE).edit();
+                sp.putString("matchName", null);
+                sp.putString("firstPlayerName", null);
+                sp.putString("secondPlayerName", null);
+                sp.putBoolean("useTimer", false);
+                sp.commit();
+
     }
 
 

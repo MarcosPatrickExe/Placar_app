@@ -91,27 +91,24 @@ class PreviousGamesActivity : AppCompatActivity() {
                         Log.v ("PDM", "Lendo o Shared Preferences")
                         val sharedFileName = "PreviousGames"
                         var aux: String
-                        var sp: SharedPreferences = getSharedPreferences(sharedFileName, Context.MODE_PRIVATE)
+                        var sp: SharedPreferences = getSharedPreferences( sharedFileName, Context.MODE_PRIVATE)
 
                        if(sp!=null) {
                                 var numMatches= sp.getInt("numberMatch", 0)
                                 Log.v("PDM", "numMatchs:"+ numMatches)
 
                                 for (i in 1.. numMatches){
-                                    aux= sp.getString("match"+i,"vazio")!!
+                                            aux = sp.getString("match"+i,"vazio")!!
 
+                                            if( !aux.equals("vazio") ){
+                                                        var bis  = ByteArrayInputStream( aux.toByteArray( Charsets.ISO_8859_1))
+                                                        var obi  = ObjectInputStream( bis)
 
-                                    if(!aux.equals("vazio")){
-                                                var bis:ByteArrayInputStream
-                                                bis = ByteArrayInputStream(aux.toByteArray(Charsets.ISO_8859_1))
-                                                var obi:ObjectInputStream
-                                                obi = ObjectInputStream(bis)
+                                                        var placar: Placar = obi.readObject() as Placar;
 
-                                                var placar: Placar = obi.readObject() as Placar;
-
-                                                    //Log.v("PDM", "match"+i+" :"+aux)
-                                                    Log.v("PDM", "Placar: "+placar.nomePartida +" Res:"+placar.getMatchResult());
-                                    }
+                                                            //Log.v("PDM", "match"+i+" :"+aux)
+                                                            Log.v("PDM", "Placar: "+placar.nomePartida +" Res:"+placar.getMatchResult());
+                                            }
                                 }
                        }
 

@@ -22,11 +22,12 @@ class PermissionActivity : AppCompatActivity() {
     lateinit var requestPermissionLauncher:androidx.activity.result.ActivityResultLauncher<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
-                super.onCreate(savedInstanceState)
-                setContentView(R.layout.activity_permission)
+                super.onCreate( savedInstanceState)
+                super.setContentView( R.layout.activity_permission)
 
-                requestPermissionLauncher= registerForActivityResult(
+                requestPermissionLauncher = registerForActivityResult(
                         ActivityResultContracts.RequestPermission()
+
                 ) { isGranted: Boolean ->
                         if (isGranted) {
                                     ligarFunc("tel:+5588999999999")

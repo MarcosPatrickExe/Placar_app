@@ -35,9 +35,11 @@ class PlacarActivity : AppCompatActivity() {
                         super.setContentView(R.layout.activity_placar)
                         super.getSupportActionBar()?.hide();
                         // this.placar = super.getIntent().getExtras()?.getSerializable("placar") as Placar;
-                        this.placar = super.getIntent().getExtras()?.getSerializable("placar") as Placar
+                    //    this.placar = super.getIntent().getSerializableExtra("placar") as Placar;
 
-                        Log.v("PDM 2022: ", "Placar Name: ${placar.nomePartida}  /// Nome P1: ${placar.firstPlayerName}");
+                        this.placar = super.getIntent().getExtras()?.getSerializable("placarBundle") as Placar
+
+                        Log.v("PDM 2022: ", "(Placar activity)  Name: ${placar.nomePartida}  /// Nome P1: ${placar.firstPlayerName}");
 
                         super.findViewById<TextView>(R.id.nomePartida).text = this.placar.nomePartida;
                         super.findViewById<TextView>(R.id.nameFirstPlayer).text = this.placar.firstPlayerName;
@@ -60,7 +62,7 @@ class PlacarActivity : AppCompatActivity() {
 
             private fun ultimoJogos () {
                             val sharedFilename :String = "PreviousGames";
-                            val sp :SharedPreferences = super.getSharedPreferences( sharedFilename,Context.MODE_PRIVATE);
+                            val sp :SharedPreferences = super.getSharedPreferences( sharedFilename, Context.MODE_PRIVATE);
                             var matchNumber  = sp.getInt("numberMatch", 0);
 
                            // var matchStr :String = sp.getString("match1","").toString();
