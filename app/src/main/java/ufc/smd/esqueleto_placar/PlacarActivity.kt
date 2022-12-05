@@ -28,18 +28,19 @@ class PlacarActivity : AppCompatActivity() {
             // objeto Placar inicializado na classe "ConfigActivity"
             lateinit var placar :Placar;
             lateinit var resultadoJogo: TextView;
-            var game = 0;
+            private var game :Int = 0;
 
             override fun onCreate(savedInstanceState: Bundle?) {
                         super.onCreate(savedInstanceState)
                         super.setContentView(R.layout.activity_placar)
                         super.getSupportActionBar()?.hide();
                         // this.placar = super.getIntent().getExtras()?.getSerializable("placar") as Placar;
-                    //    this.placar = super.getIntent().getSerializableExtra("placar") as Placar;
+                        this.placar = super.getIntent()?.getSerializableExtra("placar") as Placar;
 
-                        this.placar = super.getIntent().getExtras()?.getSerializable("placarBundle") as Placar
 
-                        Log.v("PDM 2022: ", "(Placar activity)  Name: ${placar.nomePartida}  /// Nome P1: ${placar.firstPlayerName}");
+               //         this.placar = super.getIntent().getExtras()?.getSerializable("placarBundle") as Placar
+
+                        Log.v("PDM 2022: ", "(Placar activity)  Name: ${placar.nomePartida}  /// Nome P1: ${placar.firstPlayerName}, useTimer? ${placar.useTimer}");
 
                         super.findViewById<TextView>(R.id.nomePartida).text = this.placar.nomePartida;
                         super.findViewById<TextView>(R.id.nameFirstPlayer).text = this.placar.firstPlayerName;

@@ -50,8 +50,12 @@ class ConfigActivity : AppCompatActivity() {
                                     this.placar.secondPlayerName = sp.getString("secondPlayerName", "") as String
                                     this.placar.useTimer = sp.getBoolean("useTimer",  false)
 
-                                    this.initInterface( this.placar );
+
+                        }else{
+                                Log.v("PDM 2022" ,"matchName eh null!!");
                         }
+
+                        this.initInterface( this.placar );
             }
 
             private fun initInterface ( placar :Placar) {
@@ -67,11 +71,11 @@ class ConfigActivity : AppCompatActivity() {
 
             private fun updatePlacarConfig () {
                         this.placar.nomePartida  = findViewById<TextView>(R.id.nomePartida).text.toString();
-                        this.placar.firstPlayerName = findViewById<TextView>(R.id.inputFirstPlayerName).toString();
-                        this.placar.secondPlayerName = super.findViewById<TextView>(R.id.inputSecondPlayerName).toString();
+                        this.placar.firstPlayerName = findViewById<TextView>(R.id.inputFirstPlayerName).text.toString();
+                        this.placar.secondPlayerName = super.findViewById<TextView>(R.id.inputSecondPlayerName).text.toString();
                         this.placar.useTimer = super.findViewById<Switch>(R.id.useTimer).isEnabled
 
-                        Log.v("PDM 2022: ", "Salvando objeto em config: Placar Name: ${placar.nomePartida}  /// Nome P1: ${placar.firstPlayerName}");
+                        Log.v("PDM 2022: ", "Indo pra tela de placar ///: Placar Name: ${placar.nomePartida}  /// Nome P1: ${placar.firstPlayerName}");
 
                         this.saveConfig( this.placar ); //Salva no Shared preferences
             }

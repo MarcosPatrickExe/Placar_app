@@ -67,7 +67,9 @@
                     android:backgroundTint="@color/white"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Noma da partida"
+                    android:text=""
+                    android:hint="Nome da partida"
+                    android:textColorHint="@color/gray"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -90,7 +92,9 @@
                     android:backgroundTint="@color/white"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Player 1"
+                    android:text=""
+                    android:hint="Player 1"
+                    android:textColorHint="@color/gray"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -112,7 +116,9 @@
                     android:backgroundTint="@color/white"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Player 2"
+                    android:text=""
+                    android:hint="Player 2"
+                    android:textColorHint="@color/gray"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
