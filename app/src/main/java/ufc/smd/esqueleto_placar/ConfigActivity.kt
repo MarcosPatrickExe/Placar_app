@@ -49,8 +49,6 @@ class ConfigActivity : AppCompatActivity() {
                                     this.placar.firstPlayerName = sp.getString("firstPlayerName", "") as String
                                     this.placar.secondPlayerName = sp.getString("secondPlayerName", "") as String
                                     this.placar.useTimer = sp.getBoolean("useTimer",  false)
-
-
                         }else{
                                 Log.v("PDM 2022" ,"matchName eh null!!");
                         }

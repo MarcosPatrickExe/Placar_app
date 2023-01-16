@@ -35,7 +35,7 @@ class PlacarActivity : AppCompatActivity() {
                         super.setContentView(R.layout.activity_placar)
                         super.getSupportActionBar()?.hide();
                         // this.placar = super.getIntent().getExtras()?.getSerializable("placar") as Placar;
-                        this.placar = super.getIntent()?.getSerializableExtra("placar") as Placar;
+                        this.placar = super.getIntent().getSerializableExtra("placarBundle") as Placar;
 
 
                //         this.placar = super.getIntent().getExtras()?.getSerializable("placarBundle") as Placar
@@ -45,9 +45,13 @@ class PlacarActivity : AppCompatActivity() {
                         super.findViewById<TextView>(R.id.nomePartida).text = this.placar.nomePartida;
                         super.findViewById<TextView>(R.id.nameFirstPlayer).text = this.placar.firstPlayerName;
                         super.findViewById<TextView>(R.id.nameSecondPlayer).text  = this.placar.secondPlayerName;
+                        super.findViewById<TextView>(R.id.firstPlayerScore).text = this.placar.scoreFirstPlayer.toString();
+                        super.findViewById<TextView>(R.id.secondPlayerScore).text = this.placar.scoreSecondPlayer.toString();
+                        super.findViewById<TextView>(R.id.setPlayerUm).text = this.placar.setFirstPlayer.toString();
+                        super.findViewById<TextView>(R.id.setPlayerDois).text = this.placar.setSecondPlayer.toString();
 
 
-                        if ( placar.useTimer ) {
+                if ( placar.useTimer ) {
                                  super.findViewById<TextView>(R.id.txtTimer) .visibility = View.VISIBLE;
                                  super.findViewById<ImageButton>(R.id.btnPause).visibility = View.VISIBLE;
                                  super.findViewById<ImageButton>(R.id.btnPlay).visibility = View.VISIBLE;
@@ -57,11 +61,11 @@ class PlacarActivity : AppCompatActivity() {
                                 super.findViewById<ImageButton>(R.id.btnPlay).visibility = View.INVISIBLE;
                         }
 
-                        this.ultimoJogos();
+                     //   this.ultimoJogos();
             }
 
 
-            private fun ultimoJogos () {
+            fun ultimoJogos ( v:View) {
                             val sharedFilename :String = "PreviousGames";
                             val sp :SharedPreferences = super.getSharedPreferences( sharedFilename, Context.MODE_PRIVATE);
                             var matchNumber  = sp.getInt("numberMatch", 0);
